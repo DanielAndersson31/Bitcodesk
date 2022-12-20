@@ -6,7 +6,6 @@ import Modal from "./functions/Modal";
 import Carousel from "./pages/Carousel";
 import Footer from "./pages/Footer";
 import ListStockPrice from "./pages/TrendingCoins";
-import ListCurrencies from "./pages/ListCurrencies";
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
       <img className="absolute top-0" src="/src/assets/images/light-trails-buildings.jpg"></img>
       <Header />
       <Main />
-      <ListCurrencies />
     </>
   );
 }

@@ -48,7 +48,7 @@ function ListCurrencies() {
         })
       );
     }
-
+    console.log(currencyData);
     return (
       <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-96 my-20">
         <Modal open={openModal} onClose={() => setOpenModal(false)} item={item} currentConnection={currentConnection} />
@@ -84,61 +84,32 @@ function ListCurrencies() {
             ></input>
           </div>
         </form>
-        <table className="w-full text-xl text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xl text-white uppercase bg-slate-800 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="py-3 px-6">
-                Name
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Rank
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Price
-              </th>
-              <th scope="col" className="py-3 px-6">
-                ATH(All time high)
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {search(currencyData)
-              .slice(0, paginate)
-              .map((item) => (
-                <tr class="bg-slate-800 border-b dark:bg-gray-900 dark:border-gray-700" key={item.id}>
-                  <th
-                    scope="row"
-                    class="py-4 px-6 font-medium text-white whitespace-nowrap dark:text-white flex items-center w-36"
-                  >
-                    {/* <img className="" src={item.image}></img> */}
-                    {item.name}
-                  </th>
-                  <td className="py-4 px-6 text-white">{item.market_cap_rank}</td>
-                  <td className="py-4 px-6 text-white">€ {item.current_price}</td>
-                  <td className="py-4 px-6 text-white">€ {item.ath}</td>
-                  <td className="py-4 px-6">
-                    <button
-                      onClick={() => {
-                        setOpenModal(true);
-                        setItem(item);
-                        const newConnection = createConnection(item.symbol);
-                        setCurrentConnection(newConnection);
-                      }}
-                      className="text-white hover:underline"
-                    >
-                      More Info
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-        <button className="text-gradient w-full text-2xl" onClick={load_more}>
-          Load More
-        </button>
+
+        <div>
+          {search(currencyData)
+            .slice(0, paginate)
+            .map((item) => (
+              <div className="bg-slate-800 my-2 p-2 flex flex-col items-center rounded-xl text-white">
+                <h1 className="">{item.name}</h1>
+                <h2>Rank:{item.market_cap_rank}</h2>
+                <img className="w-12" src={item.image}></img>
+                <h2>Price: {item.current_price}</h2>
+                <h2>All time high: </h2>
+
+                <button
+                  onClick={() => {
+                    setOpenModal(true);
+                    setItem(item);
+                    const newConnection = createConnection(item.symbol);
+                    setCurrentConnection(newConnection);
+                  }}
+                  className=""
+                >
+                  More Info
+                </button>
+              </div>
+            ))}
+        </div>
       </div>
     );
   } else {
@@ -148,3 +119,56 @@ function ListCurrencies() {
 }
 
 export default ListCurrencies;
+
+// <table className="w-full text-xl text-left text-gray-500 dark:text-gray-400">
+//   <thead className="text-xl text-white uppercase bg-slate-800 dark:bg-gray-700 dark:text-gray-400">
+//     <tr>
+//       <th scope="col" className="py-3 px-6">
+//         Name
+//       </th>
+//       <th scope="col" className="py-3 px-6">
+//         Rank
+//       </th>
+//       <th scope="col" className="py-3 px-6">
+//         Price
+//       </th>
+//       <th scope="col" className="py-3 px-6">
+//         ATH(All time high)
+//       </th>
+//       <th scope="col" className="py-3 px-6">
+//         Action
+//       </th>
+//     </tr>
+//   </thead>
+//   <tbody>
+// {search(currencyData)
+//   .slice(0, paginate)
+//   .map((item) => (
+//     <tr class="bg-slate-800 border-b dark:bg-gray-900 dark:border-gray-700" key={item.id}>
+//       <th
+//         scope="row"
+//         class="py-4 px-6 font-medium text-white whitespace-nowrap dark:text-white flex items-center w-36"
+//       >
+//         {/* <img className="" src={item.image}></img> */}
+//         {item.name}
+//       </th>
+//       <td className="py-4 px-6 text-white">{item.market_cap_rank}</td>
+//       <td className="py-4 px-6 text-white">€ {item.current_price}</td>
+//       <td className="py-4 px-6 text-white">€ {item.ath}</td>
+//       <td className="py-4 px-6">
+//         <button
+//           onClick={() => {
+//             setOpenModal(true);
+//             setItem(item);
+//             const newConnection = createConnection(item.symbol);
+//             setCurrentConnection(newConnection);
+//           }}
+//           className="text-white hover:underline"
+//         >
+//           More Info
+//         </button>
+//       </td>
+//     </tr>
+//   ))}
+//   </tbody>
+// </table>;

@@ -1,5 +1,6 @@
 import { FaBluetoothB } from "react-icons/fa";
 import Carousel from "./Carousel";
+import ListCurrencies from "./ListCurrencies";
 
 // Add new cryptocurrencies and options to the main base
 
@@ -14,7 +15,7 @@ function Main() {
       <div className="">
         <div className="py-8 flex">
           {/* card go here */}
-          <div className="w-full px-80">
+          <div className="w-full px-24">
             <Carousel />
           </div>
         </div>
@@ -41,7 +42,9 @@ function Main() {
           </div>
         </section>
 
-        <div className="mt-8">{/* <!-- cards go here --> */}</div>
+        <div className="w-full grid grid-row-4">
+          <ListCurrencies />
+        </div>
       </div>
     </main>
   );
