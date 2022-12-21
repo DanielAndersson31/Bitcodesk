@@ -42,7 +42,7 @@ function Main() {
           </div>
         </section>
 
-        <div className="w-full grid grid-row-4">
+        <div className="w-full">
           <ListCurrencies />
         </div>
       </div>

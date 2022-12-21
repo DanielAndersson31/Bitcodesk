@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { createConnection } from "../functions/ConnectWebSocket";
 import { useFetch } from "../functions/FetchAPI";
 import Modal from "../functions/Modal";
+import RecentlyViewed from "../functions/RecentlyViewed";
+import { useLocalStorage } from "../functions/StoreLocalStorage";
 
 //  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false";
 
@@ -22,10 +24,18 @@ function ListCurrencies() {
   const [query, setQuery] = useState("");
   console.log(query);
   // Pagniation Load more
-  const [paginate, setPaginate] = useState(8);
+  const [paginate, setPaginate] = useState(25);
   const load_more = (event) => {
-    setPaginate((prevValue) => prevValue + 8);
+    setPaginate((prevValue) => prevValue + 25);
   };
+
+  // Create recently viewed Array
+
+  const [recentlyViewed, setRecentlyViewed] = useState([]);
+
+  function addNewCurrency(currency) {
+    setRecentlyViewed((recentViewed) => [...recentViewed, currency]);
+  }
 
   const { data: data, error, loading } = useFetch(API_URL);
   if (loading) return console.log(loading);
@@ -33,12 +43,10 @@ function ListCurrencies() {
   if (error) return console.log("Error, unable to display content");
 
   if (data) {
-    console.log(data);
     const currencyData = Object.values(data);
     const search_parameters = Object.keys(data[0]).filter((key) => {
       return typeof data[0][key] === "string";
     });
-    console.log(search_parameters);
     function search(data) {
       return data.filter((item) =>
         search_parameters.some((parameter) => {
@@ -48,9 +56,8 @@ function ListCurrencies() {
         })
       );
     }
-    console.log(currencyData);
     return (
-      <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-96 my-20">
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-24 my-20">
         <Modal open={openModal} onClose={() => setOpenModal(false)} item={item} currentConnection={currentConnection} />
         <form>
           <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
@@ -85,31 +92,36 @@ function ListCurrencies() {
           </div>
         </form>
 
-        <div>
+        <div className="grid grid-cols-5 gap-4">
           {search(currencyData)
             .slice(0, paginate)
             .map((item) => (
-              <div className="bg-slate-800 my-2 p-2 flex flex-col items-center rounded-xl text-white">
+              <div className="bg-slate-900 my-2 p-2 flex flex-col items-center rounded-xl text-white w-48 gap-2">
                 <h1 className="">{item.name}</h1>
-                <h2>Rank:{item.market_cap_rank}</h2>
                 <img className="w-12" src={item.image}></img>
-                <h2>Price: {item.current_price}</h2>
+                <h2>Rank:{item.market_cap_rank}</h2>
+                <h2>${item.current_price}</h2>
                 <h2>All time high: </h2>
 
                 <button
                   onClick={() => {
                     setOpenModal(true);
                     setItem(item);
+                    addNewCurrency(item);
                     const newConnection = createConnection(item.symbol);
                     setCurrentConnection(newConnection);
                   }}
-                  className=""
+                  className="w-full bg-white text-black"
                 >
                   More Info
                 </button>
               </div>
             ))}
+          <button className="text-gradient" onClick={load_more}>
+            Load more
+          </button>
         </div>
+        <RecentlyViewed currency={recentlyViewed} />
       </div>
     );
   } else {

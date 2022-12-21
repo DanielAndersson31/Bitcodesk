@@ -11,7 +11,13 @@ function Modal({ open, onClose, item, currentConnection }) {
   };
   return (
     <div className="modal">
-      <div onClick={onClose} className="overlay">
+      <div
+        onClick={() => {
+          currentConnection.close();
+          onClose();
+        }}
+        className="overlay"
+      >
         <div
           onClick={(e) => {
             e.stopPropagation();

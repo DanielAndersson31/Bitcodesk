@@ -44,7 +44,7 @@ const Carousel = () => {
     data.forEach((element) => {
       let createNewItem = (
         <div className="m-4 border-2 border-slate-400 rounded-xl">
-          <div className="Content backdrop-blur-md w-full flex flex-col items-center">
+          <div className="backdrop-blur-md w-full flex flex-col items-center">
             <h1 className="p-2 text-white text-xl">{element.name}</h1>
             <img draggable="false" src={element.image} className="w-24 p-2"></img>
             <h2 className={changeColor(element.price_change_percentage_24h)}>{element.price_change_percentage_24h}%</h2>
