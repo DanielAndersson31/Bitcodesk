@@ -34,7 +34,12 @@ function ListCurrencies() {
   const [recentlyViewed, setRecentlyViewed] = useState([]);
 
   function addNewCurrency(currency) {
-    setRecentlyViewed((recentViewed) => [...recentViewed, currency]);
+    if (recentlyViewed.find((item) => item.id === currency.id)) {
+      const filteredRecentlyViewed = recentlyViewed.filter((item) => item.id !== currency.id);
+      return setRecentlyViewed([currency, ...filteredRecentlyViewed]);
+    } else {
+      return setRecentlyViewed([currency, ...recentlyViewed]);
+    }
   }
 
   const { data: data, error, loading } = useFetch(API_URL);
@@ -96,7 +101,7 @@ function ListCurrencies() {
           {search(currencyData)
             .slice(0, paginate)
             .map((item) => (
-              <div className="bg-slate-900 my-2 p-2 flex flex-col items-center rounded-xl text-white w-48 gap-2">
+              <div className="bg-slate-900 my-2 p-2 flex flex-col items-center rounded-xl text-white">
                 <h1 className="">{item.name}</h1>
                 <img className="w-12" src={item.image}></img>
                 <h2>Rank:{item.market_cap_rank}</h2>
