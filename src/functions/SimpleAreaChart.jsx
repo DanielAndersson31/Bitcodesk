@@ -4,13 +4,6 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts"
 
 const chartDataURL = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=eur&days=30";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 2,
-  },
-];
-
 export default function ChartData() {
   const fetchDataHistory = useFetch(chartDataURL);
 
@@ -27,7 +20,7 @@ export default function ChartData() {
 
   return (
     <div>
-      <h1 className="text-black text-2xl pb-8">Bitcoin 30 Days Chart </h1>
+      <h1 className="text-black text-2xl pb-8">Bitcoin Chart 24H </h1>
       <AreaChart
         width={500}
         height={400}
