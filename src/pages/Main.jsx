@@ -21,19 +21,10 @@ function Main() {
           </div>
         </div>
 
-        <h4 className="font-bold mt-12 pb-2 text-4xl">Most Popular</h4>
-        <section className="p-20 m-24 bg-white rounded-lg">
+        <h4 className="font-bold mt-12 pb-2 text-4xl uppercase text-gradient">Cryptocurrencies Charts</h4>
+        <section className="p-20 mx-24 my-12 bg-white rounded-lg">
           <div className=" p-4  flex justify-center items-center">
             <ChartData />
-          </div>
-          <div className="p-4  flex justify-center">
-            <article className="flex justify-center items-center max-w-[50%] bg-blue-700">
-              <div className="">Content</div>
-              <img
-                className="w-[50%]"
-                src="/src/assets/images/blockchain-technology-background-gradient-blue.jpg"
-              ></img>
-            </article>
           </div>
         </section>
 
