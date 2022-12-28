@@ -6,11 +6,12 @@ import Modal from "./functions/Modal";
 import Carousel from "./pages/Carousel";
 import Footer from "./pages/Footer";
 import ListStockPrice from "./pages/TrendingCoins";
+import backgroundImage from "../src/assets/images/light-trails-buildings.jpg";
 
 function App() {
   return (
     <>
-      <img className="absolute top-0" src="src/assets/images/light-trails-buildings.jpg"></img>
+      <img className="absolute top-0" src={backgroundImage}></img>
       <Header />
       <Main />
     </>
