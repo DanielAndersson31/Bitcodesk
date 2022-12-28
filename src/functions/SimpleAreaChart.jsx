@@ -1,26 +1,30 @@
-import React, { useState } from "react";
 import { useFetch } from "./FetchAPI";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import { useEffect, useState } from "react";
 
-const chartDataURL = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=eur&days=30";
+function ChartData({ currency }) {
+  const chartAPI_URL = `https://api.coingecko.com/api/v3/coins/${currency}/market_chart?vs_currency=eur&days=max`;
 
-export default function ChartData() {
-  const fetchDataHistory = useFetch(chartDataURL);
+  const { data: data, error, loading } = useFetch(chartAPI_URL);
+  if (loading) return console.log(loading);
 
-  const graphData = fetchDataHistory.data.prices.map((item) => {
-    const [timestamp, p] = item;
-    const date = new Date(timestamp).toLocaleDateString("en-us");
+  if (error) return console.log("Error, unable to display content");
+  let graphData = [];
+  if (data) {
+    graphData = data.prices.map((item) => {
+      const [timestamp, p] = item;
+      const date = new Date(timestamp).toLocaleDateString("en-us");
 
-    return {
-      Date: date,
-      Price: p,
-    };
-  });
-  console.log(graphData);
+      return {
+        Date: date,
+        Price: p,
+      };
+    });
+  }
 
   return (
     <div>
-      <h1 className="text-black text-2xl pb-8">Bitcoin Chart 24H </h1>
+      <h1 className="text-black text-2xl pb-8 uppercase ">{currency} Chart</h1>
       <AreaChart
         width={500}
         height={400}
@@ -40,4 +44,16 @@ export default function ChartData() {
       </AreaChart>
     </div>
   );
+
+  // const graphData = dataCurrencies.data.prices.map((item) => {
+  //   const [timestamp, price] = item;
+  //   const date = new Date(timestamp).toLocaleDateString("en-us");
+
+  //   return {
+  //     Date: date,
+  //     Price: price,
+  //   };
+  // });
 }
+
+export default ChartData;

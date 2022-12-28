@@ -21,13 +21,6 @@ function Main() {
           </div>
         </div>
 
-        <h4 className="font-bold mt-12 pb-2 text-4xl uppercase text-gradient">Cryptocurrencies Charts</h4>
-        <section className="p-20 mx-24 my-12 bg-white rounded-lg">
-          <div className=" p-4  flex justify-center items-center">
-            <ChartData />
-          </div>
-        </section>
-
         <div className="w-full">
           <ListCurrencies />
         </div>

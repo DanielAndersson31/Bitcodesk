@@ -10,10 +10,7 @@ import ListStockPrice from "./pages/TrendingCoins";
 function App() {
   return (
     <>
-      {/* <video autoplay="true" loop="true" className="absolute top-0">
-        <source src="/src/assets/images/video.mp4" type="video/mp4"></source>
-      </video> */}
-      <img className="absolute top-0" src="/src/assets/images/light-trails-buildings.jpg"></img>
+      <img className="absolute top-0 bg-scroll" src="/src/assets/images/light-trails-buildings.jpg"></img>
       <Header />
       <Main />
     </>

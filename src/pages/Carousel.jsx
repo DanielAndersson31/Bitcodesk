@@ -7,7 +7,7 @@ const Carousel = () => {
   //URL to retrieve most popular Crypto Currencies
 
   const API_URL =
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=10&page=1&sparkline=false";
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false";
 
   const handleDragStart = (e) => e.preventDefault();
 
@@ -17,9 +17,11 @@ const Carousel = () => {
     0: {
       items: 1,
     },
-    512: {
-      items: 5,
-      itemsFit: "contain",
+    824: {
+      items: 4,
+    },
+    1540: {
+      items: 7,
     },
   };
 
@@ -43,10 +45,11 @@ const Carousel = () => {
   if (data) {
     data.forEach((element) => {
       let createNewItem = (
-        <div className="m-4 border-2 border-slate-400 rounded-xl">
-          <div className="backdrop-blur-md w-full flex flex-col items-center">
+        <div className="h-72 flex flex-col justify-evenly m-4 border-2 border-slate-400 rounded-xl backdrop-blur-md">
+          <div className="p-2 w-full flex flex-col justify-evenly items-center">
+            <img draggable="false" src={element.image} className="w-36 p-2"></img>
             <h1 className="p-2 text-white text-xl">{element.name}</h1>
-            <img draggable="false" src={element.image} className="w-24 p-2"></img>
+
             <h2 className={changeColor(element.price_change_percentage_24h)}>{element.price_change_percentage_24h}%</h2>
             <h2 className="p-2 text-white text-xl">€{element.current_price}</h2>
           </div>
