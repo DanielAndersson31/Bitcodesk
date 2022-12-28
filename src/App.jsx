@@ -10,7 +10,7 @@ import ListStockPrice from "./pages/TrendingCoins";
 function App() {
   return (
     <>
-      <img className="absolute top-0 bg-scroll" src="/src/assets/images/light-trails-buildings.jpg"></img>
+      <img className="absolute top-0 bg-scroll" src="src/assets/images/light-trails-buildings.jpg"></img>
       <Header />
       <Main />
     </>
