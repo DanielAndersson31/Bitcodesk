@@ -1,4 +1,5 @@
-# Javascript-Backend-Assginment---v2
+# Bitcodesk
+A somewhat simple React.js application for cryptocurrencies
 
 # Live Preview:
 https://bitcodesk.netlify.app/ 
