@@ -1,4 +1,4 @@
-# Bitcodesk
+# **Bitcodesk**
 A somewhat simple React.js application for cryptocurrencies
 
 # Live Preview:
