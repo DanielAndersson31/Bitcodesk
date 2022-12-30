@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * Make changes to all js, ts ,jsx and tsx files within the index.html folder. (Includes all subfolders available)
+ * @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
