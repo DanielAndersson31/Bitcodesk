@@ -18,8 +18,8 @@ _No API Key is required_
 Start with cloning this repo on your local machine:
 
 ```sh
-$ git clone https://github.com/DanielAndersson31/Javascript-Backend-Assginment---v2.git
-$ cd Javascript-Backend-Assginment---v2
+$ git clone https://github.com/DanielAndersson31/Bitcodesk.git
+$ cd Bitcodesk
 ```
 
 Then run this to install all necessary dependencies:
