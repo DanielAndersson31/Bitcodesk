@@ -25,7 +25,7 @@ function ListCurrencies() {
   };
 
   // Create recently viewed Array
-
+  // Local Storage will be implemented for next update.
   const [recentlyViewed, setRecentlyViewed] = useState([]);
 
   function addNewCurrency(currency) {
@@ -36,10 +36,12 @@ function ListCurrencies() {
       return setRecentlyViewed([currency, ...recentlyViewed]);
     }
   }
-
+  // Removes recently viewed Array
   function deleteRecentlyViewed() {
     setRecentlyViewed([]);
   }
+
+  //Fetches DATA from API and preform different tasks depending on the response
 
   const { data: data, error, loading } = useFetch(API_URL);
   if (loading) return console.log(loading);
